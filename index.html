@@ -25,20 +25,29 @@
         <h1>Weather Dashboard</h1>
     </header> 
 
-    <div class = "container-fluid">
-      <div class = "row">
-        <form class="col-2">
+    <main id="container" class = "container-fluid row">
+      <div class = "container row col-xl-8" id = container_1>
+        <form id ="search_bar" class="col-xl-4">
           <p class="text-center font-weight-bold">Search for a City</p>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" id = "cities" placeholder="City" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input type="text" class="form-control col-xl-8" id = "cities" placeholder="City" aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
-              <button class="btn btn-primary" type="button" id="button-addon2">Button</button> <!--I need to add list group-->
+              <button class="btn btn-primary" type="button" id="button-addon2">Button</button>  <!--I need to add list group-->
             </div>
           </div>
+          <div id="searches-container">
+            <div class="list-group col-12" id="recent-searches">
+              <!-- <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+              <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+              <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+              <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+              <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a> -->
+            </div>
+        </div>
         </form>
-          <div class ="row"><!--this I might need to change for a card-->
-            <div class="col-10 jumbotron jumbotron-fluid mt-4 ">
-              <div class="container">
+          <section id = "city_data-container"class ="col-xl-10"><!--this I might need to change for a card-->
+            <div class="col-10 jumbotron jumbotron-fluid mt-4 p-4">
+              
                 <h1 class="display-4 text-left main_date"></h1>
                 <p><span class="lead data1">Temperature:</span></p>
                 <p><span class="lead data2">Humidity:</span></p>
@@ -48,12 +57,12 @@
 
               </div>
             </div>
-            <h5>5-Day Forecast</h5>
             <br>
             <br>
-              <div class = "container row justify-content-between"  ">
+            <div class = "container row justify-content-between"  ">
+              <h5>5-Day Forecast</h5>
                 
-                <div class="col-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
+                <div class="col-xl-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
                  
                   <div class="card-body text-white">
                     <h6 class="card-title date1"></h6>
@@ -62,7 +71,7 @@
                     <p class="card-text hum1"></p>
                   </div>
                 </div>
-                <div class="col-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
+                <div class="col-xl-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
                   
                   <div class="card-body text-white">
                     <h6 class="card-title date2"></h6>
@@ -71,7 +80,7 @@
                     <p class="card-text hum2"></p>
                   </div>
                 </div>
-                <div class="col-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
+                <div class="col-xl-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
                   
                   <div class="card-body text-white">
                     <h6 class="card-title date3"></h6>
@@ -80,7 +89,7 @@
                     <p class="card-text hum3"></p>
                   </div>
                 </div>
-                <div class="col-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
+                <div class="col-xl-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
                  
                   <div class="card-body text-white">
                     <h6 class="card-title date4"></h6>
@@ -89,7 +98,7 @@
                     <p class="card-text hum4"></p>
                   </div>
                 </div>
-                <div class="col-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
+                <div class="col-xl-2 card border-dark mb-3 bg-primary" style="max-width: 18rem;">
                   
                   <div class="card-body text-white">
                     <h6 class="card-title date5"></h6>
@@ -100,8 +109,8 @@
                 </div>
               </div>
             </div>
-      </div>
-    </div>
+    </main>
+    
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

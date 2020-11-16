@@ -1,18 +1,29 @@
 
-$("#button-addon2").on("click",search)
+$("#container_1").on("click","#button-addon2",search)
     
 function search(event){
     event.preventDefault();
     
-    var city = $("#cities").val()
+    // var city = $("#cities").val()
+    // localStorage.setItem("Searched-City", cityClicked);
+    var cityClicked = $("#cities").val()||$(this).text();
+    console.log(cityClicked);
+
+    savedCity.push(cityClicked)
+    localStorage.setItem("searched-city",JSON.stringify(savedCity));
+    
+        
     
     var currentDay = moment().format("MM/DD/YYYY");
     // console.log(currentDay);
-    $(".main_date").text(city + " "+currentDay);
+    $(".main_date").text(cityClicked + " "+currentDay);
     
     // search(event);
-    request(city);
+    request(cityClicked);
 };
+// var storedCitiesJSON = localStorage.getItem("Searched-City");
+var savedCity = JSON.parse(localStorage.getItem("Searched-City"))||[];
+console.log(savedCity);
 
 //in the .then section i need to add another ajax request for the other API//
 function request(cityName) {
