@@ -1,4 +1,4 @@
-
+/*  */
 $("#container_1").on("click","#button-addon2",search)
     
 function search(event){
@@ -7,11 +7,16 @@ function search(event){
     // var city = $("#cities").val()
     // localStorage.setItem("Searched-City", cityClicked);
     var cityClicked = $("#cities").val()||$(this).text();
-    console.log(cityClicked);
+    // console.log(cityClicked);
 
     savedCity.push(cityClicked)
     localStorage.setItem("searched-city",JSON.stringify(savedCity));
-    
+    var cityListEL = $("recent-searches")
+    for (var cityPointer =0; cityPointer<savedCity.length;cityPointer++){
+       /* var cityTitle = $('<li>').addClass('list-group-item').text(savedCity[cityPointer]);
+        cityListEL.prepend(cityTitle); */
+    } 
+ 
         
     
     var currentDay = moment().format("MM/DD/YYYY");
@@ -22,7 +27,7 @@ function search(event){
     request(cityClicked);
 };
 // var storedCitiesJSON = localStorage.getItem("Searched-City");
-var savedCity = JSON.parse(localStorage.getItem("Searched-City"))||[];
+var savedCity = JSON.parse(localStorage.getItem("searched-city"))||[];
 console.log(savedCity);
 
 //in the .then section i need to add another ajax request for the other API//
@@ -32,7 +37,7 @@ function request(cityName) {
         url: queryURL,
         method: "GET"
     }).then(function(response){
-        console.log(response);
+        // console.log(response);
         $(".data1").text("Temperature: " + response.main.temp + "°F");
         $(".data2").text("Humidity: " + response.main.humidity + "%");
         $(".data3").text("Wind Speed: " + response.wind.speed + "mph");
