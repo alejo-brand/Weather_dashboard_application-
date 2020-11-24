@@ -4,14 +4,15 @@ $(document).ready(function(){
 
 var cityListEL = $("#recent-searches")
 
-// var storedCitiesJSON = localStorage.getItem("Searched-City");
+// create a variable to get the cities saved into local storage and setup an empty arrat
 var savedCity = JSON.parse(localStorage.getItem("searched-city"))||[];
 // console.log(savedCity);
+// render the cities from that "empty array"
 for (var cityPointer =0; cityPointer<savedCity.length;cityPointer++){
     var cityTitle = $('<button>').addClass('list-group-item citybtn').text(savedCity[cityPointer]);
     cityListEL.prepend(cityTitle);
 } 
-
+//this function calls accepts the click of the user and gets the value of the citie searched
 function search(event){
     event.preventDefault();
     
@@ -20,7 +21,7 @@ function search(event){
     var cityClicked = $("#cities").val()||$(this).text();
 
     // console.log(cityClicked);
-    
+    //this sends the city from the local storage into the setup empty array named savedCity
     savedCity.push(cityClicked)
     localStorage.setItem("searched-city",JSON.stringify(savedCity));
     
@@ -30,7 +31,7 @@ function search(event){
     request(cityClicked);
 };
 
-//in the .then section i need to add another ajax request for the other API//
+//this function accepts the city entered and renders the information in the main jumbotron
 function request(cityName) {
     var currentDay = moment().format("MM/DD/YYYY");
     // console.log(currentDay);
@@ -55,6 +56,7 @@ function request(cityName) {
     });
 
     };
+    //this function accepts the latitude and longitude needed to calculate de uv index and determines classifies the uv index
 function secondRequest(latitude,longitude){
 
     var scndQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longitude + "&appid=bcd175ceb7463d439ff2fd3b39ac3761"
@@ -82,7 +84,7 @@ function secondRequest(latitude,longitude){
         });
 
 };
-
+// this function calls makes the request for the 5 day forecast and renders the five cards
 function thirdRequest(city){
     var trdQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=bcd175ceb7463d439ff2fd3b39ac3761&units=imperial";
 
@@ -104,6 +106,7 @@ function thirdRequest(city){
     });
 }
 $("#button-addon2").on("click",search)
+// this anonnymous function listen to the click of any searched city in the list group and calls the request function to render the page again
 $(".citybtn").on("click",function(event){
     event.preventDefault();
     console.log(event.target)
