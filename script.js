@@ -1,37 +1,40 @@
-/*  */
-$("#container_1").on("click","#button-addon2",search)
-    
+    /*  */
+
+$(document).ready(function(){
+
+var cityListEL = $("#recent-searches")
+
+// var storedCitiesJSON = localStorage.getItem("Searched-City");
+var savedCity = JSON.parse(localStorage.getItem("searched-city"))||[];
+// console.log(savedCity);
+for (var cityPointer =0; cityPointer<savedCity.length;cityPointer++){
+    var cityTitle = $('<button>').addClass('list-group-item citybtn').text(savedCity[cityPointer]);
+    cityListEL.prepend(cityTitle);
+} 
+
 function search(event){
     event.preventDefault();
     
     // var city = $("#cities").val()
     // localStorage.setItem("Searched-City", cityClicked);
     var cityClicked = $("#cities").val()||$(this).text();
-    // console.log(cityClicked);
 
+    // console.log(cityClicked);
+    
     savedCity.push(cityClicked)
     localStorage.setItem("searched-city",JSON.stringify(savedCity));
-    var cityListEL = $("recent-searches")
-    for (var cityPointer =0; cityPointer<savedCity.length;cityPointer++){
-       /* var cityTitle = $('<li>').addClass('list-group-item').text(savedCity[cityPointer]);
-        cityListEL.prepend(cityTitle); */
-    } 
- 
-        
     
-    var currentDay = moment().format("MM/DD/YYYY");
-    // console.log(currentDay);
-    $(".main_date").text(cityClicked + " "+currentDay);
+    
     
     // search(event);
     request(cityClicked);
 };
-// var storedCitiesJSON = localStorage.getItem("Searched-City");
-var savedCity = JSON.parse(localStorage.getItem("searched-city"))||[];
-console.log(savedCity);
 
 //in the .then section i need to add another ajax request for the other API//
 function request(cityName) {
+    var currentDay = moment().format("MM/DD/YYYY");
+    // console.log(currentDay);
+    $(".main_date").text(cityName + " "+currentDay);
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=bcd175ceb7463d439ff2fd3b39ac3761&units=imperial"
     $.ajax({
         url: queryURL,
@@ -100,3 +103,13 @@ function thirdRequest(city){
         }
     });
 }
+$("#button-addon2").on("click",search)
+$(".citybtn").on("click",function(event){
+    event.preventDefault();
+    console.log(event.target)
+   var CityBtnName = (event.target).innerText;
+    console.log(CityBtnName);
+    request(CityBtnName);
+    });
+
+});
