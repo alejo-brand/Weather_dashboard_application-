@@ -6,7 +6,7 @@ var cityListEL = $("#recent-searches")
 
 // create a variable to get the cities saved into local storage and setup an empty arrat
 var savedCity = JSON.parse(localStorage.getItem("searched-city"))||[];
-// console.log(savedCity);
+console.log(savedCity);
 // render the cities from that "empty array"
 for (var cityPointer =0; cityPointer<savedCity.length;cityPointer++){
     var cityTitle = $('<button>').addClass('list-group-item citybtn').text(savedCity[cityPointer]);
@@ -70,14 +70,18 @@ function secondRequest(latitude,longitude){
     }).then(function(response){
             // console.log(response.value);
             var uvI = response.value;
+            console.log(uvI);
     
             $(".data4").text("UV Index: " + uvI);
             if (uvI <= 3){
-                $(".data4").addClass("bg-success text-white p-1 rounded");
+                $(".data4").addClass("bg-success text-white p-1 rounded")
+                $(".data4").removeClass("bg-danger bg-warning")
             }else if (uvI > 3 && uvI <= 7){
-                $(".data4").addClass("bg-warning text-white p-1 rounded");
+                $(".data4").addClass("bg-warning text-white p-1 rounded")
+                $(".data4").removeClass("bg-warning bg-danger")
             }else if (uvI > 7){
-                $(".data4").addClass("bg-danger text-white p-1 rounded");
+                $(".data4").addClass("bg-danger text-white p-1 rounded")
+                $(".data4").removeClass("bg-success bg-warning")
             }
                
             
