@@ -36,7 +36,7 @@ function request(cityName) {
     var currentDay = moment().format("MM/DD/YYYY");
     // console.log(currentDay);
     $(".main_date").text(cityName + " "+currentDay);
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=bcd175ceb7463d439ff2fd3b39ac3761&units=imperial"
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=bcd175ceb7463d439ff2fd3b39ac3761&units=imperial"
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -90,7 +90,7 @@ function secondRequest(latitude,longitude){
 };
 // this function calls makes the request for the 5 day forecast and renders the five cards
 function thirdRequest(city){
-    var trdQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=bcd175ceb7463d439ff2fd3b39ac3761&units=imperial";
+    var trdQueryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=bcd175ceb7463d439ff2fd3b39ac3761&units=imperial";
 
     $.ajax({
         url: trdQueryURL,
